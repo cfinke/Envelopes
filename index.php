@@ -24,11 +24,17 @@ if ( isset( $_POST['envelopes_submit'] ) ) {
 		break;
 	}
 	
-	
 	$page_width = $envelope_width * 72; // pts
 	$page_height = $envelope_height * 72; // pts
 
-	$pdf = new TCPDF( 'L', 'pt', array( $page_width, $page_height ) );
+	// If you tell TCPDF that you want portrait orientation, it will automatically use the longer value of the size array as the height.
+	$orientation = 'P';
+	
+	if ( $page_width > $page_height ) {
+		$orientation = 'L';
+	}
+
+	$pdf = new TCPDF( $orientation, 'pt', array( $page_width, $page_height ) );
 	$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
 	$pdf->SetMargins( 0, 0, 0 );
