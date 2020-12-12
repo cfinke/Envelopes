@@ -4,7 +4,7 @@ if ( isset( $_POST['envelopes_submit'] ) ) {
 	require "tcpdf/tcpdf.php";
 	
 	$envelope_width = $_POST['envelopes_width'];
-	$envelopes_height = $_POST['envelopes_height'];
+	$envelope_height = $_POST['envelopes_height'];
 	
 	switch ( $_POST['envelopes_width_unit'] ) {
 		case 'in':
