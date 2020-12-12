@@ -39,13 +39,14 @@ if ( isset( $_POST['envelopes_submit'] ) ) {
 
 	$pdf->SetMargins( 0, 0, 0 );
 	$pdf->SetAutoPageBreak( false );
-	
+
 	$csv_as_array = array();
 	
 	$file = fopen( $_FILES['envelopes_csv']['tmp_name'], "r" );
 	
 	$header_line = fgetcsv( $file );
-
+	$header_line = array_map( 'trim', $header_line );
+	
 	$column_index_to_column_name = array();
 		
 	foreach ( $header_line as $idx => $column_name ) {
